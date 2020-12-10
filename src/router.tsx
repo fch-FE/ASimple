@@ -10,8 +10,8 @@ const Stack = createStackNavigator();
 function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen name="Home" component={HomeComponent} options={{ title: '首页' }}/>
+      <Stack.Navigator initialRouteName="Home" screenOptions={{header: () => null}}>
+        <Stack.Screen name="Home" component={HomeComponent}/>
         <Stack.Screen name="ChooseCity" component={ChooseCityComponent} options={{ title: '选择城市' }}/>
       </Stack.Navigator>
     </NavigationContainer>

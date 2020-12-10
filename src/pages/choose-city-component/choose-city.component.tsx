@@ -19,7 +19,7 @@ export default function ChooseCityComponent() {
           center
           checkedIcon='dot-circle-o'
           uncheckedIcon='circle-o'
-          checked={currentCheckedName?.name == l.name}
+          checked={currentCheckedName && (currentCheckedName.name == l.name)}
         />
 
         <ListItem.Content>

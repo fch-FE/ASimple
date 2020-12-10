@@ -16,7 +16,21 @@ export function useHomeStore() {
 	useEffect(() => {
 		// 判断当前用户是否选择了城市
 		getCurrentInfo();
+		getLiveDetail();
 	}, [])
+
+	const getLiveDetail = () => {
+        fetch('https://api.live.bilibili.com/room/v2/AppIndex/getAllList?device=phone&platform=ios&scale=3')
+            .then((response) => response.json())//取数据
+            .then(data => {//处理数据
+                //通过setState()方法重新渲染界面
+                if (data.code === 0) {
+                    setStateWrap({
+                        bannerList: data.data.module_list[0].list
+                    })
+                }
+            })
+    }
 
 	async function getCurrentInfo() {
         try{
@@ -27,10 +41,21 @@ export function useHomeStore() {
 				navigation.replace("ChooseCity");
 			} else {
 				// 设置当前的地址
+				setStateWrap({
+					location: JSON.parse(value).name
+				});
 			}
         } catch(e) {
             Alert.alert('读取失败');
         }
+	}
+
+	async function setLesson(type: number) {
+		// 全局缓存等到下次进入的时候获取
+		await AsyncStorage.setItem('lesson', type + "");
+		setStateWrap({
+			currentLesson: type
+		})
 	}
 
 	// 初始化首页
@@ -46,5 +71,5 @@ export function useHomeStore() {
 	 } else {
 	     statusBarHeight = StatusBar.currentHeight;
     }
-    return { state, statusBarHeight };
+    return { state, statusBarHeight, setLesson };
 };
