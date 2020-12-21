@@ -1,15 +1,14 @@
 import * as React from 'react';
 import { styles } from './home.component.style';
-import { View, Text, ScrollView, TouchableHighlight, Image } from 'react-native';
+import { View, Text, ScrollView, TouchableHighlight, Image, TouchableOpacity } from 'react-native';
 import { useHomeStore } from './home.component.store';
 import HomePageComponent from "../home-page-component/home-page.component"
-import ScrollableTabView, { ScrollableTabBar } from 'react-native-scrollable-tab-view';
 import { Header, Icon } from 'react-native-elements';
 import Swiper from 'react-native-swiper';
-import { iconsTitle } from './home.interface';
+import { iconsTitle, scrollerPic } from './home.interface';
 
 export default function HomeComponent() {
-  const { state, statusBarHeight, setLesson } = useHomeStore();
+  const { state, statusBarHeight, navigation, setLesson, navigateToChooseCity } = useHomeStore();
   const { location, currentLesson, bannerList } = state;
   const BannerHeight = 110;
   //轮播图部分
@@ -40,24 +39,42 @@ export default function HomeComponent() {
     )
   }
 
+  function _renderBottom() {
+    return <View style={{marginBottom: 10}}>
+      <Text style={{fontWeight: "500", marginBottom: 20}}>摩托车 --- 路考视频</Text>
+      <ScrollView horizontal={true}>
+        {scrollerPic.map((pic, index) =>{ 
+          return <View key={index}>
+            <Image resizeMode="contain" style={styles.scrollerPicImage} source={pic.icon}></Image>
+          </View>
+        })}
+      </ScrollView>
+    </View>
+  }
+
   function _renderMainContent() {
     return <View style={styles.mainContent}>
-      <View style={styles.mainContentLeft}>
+      <View>
       {iconsTitle.left.map((item) => {
-        return <View key={item.title} style={styles.mainContentLeftIcon}>
+        return <TouchableOpacity key={item.title} onPress={() => {
+          navigation.push(item.src)
+        }}>
+           <View  style={styles.mainContentLeftIcon}>
           <Image style={styles.mainContentLeftImage} source={item.icon}></Image>
           <Text style={styles.mainContentLeftText} >{item.title}</Text>
         </View>
+        </TouchableOpacity>
+       
       })}
       </View>
-      <View>
+      <View style={styles.shunxuExamMain}>
         <View style={styles.shunxuExam}>
-          <Text style={{fontSize: 17, color: "white", marginBottom: 10}}>顺序做题</Text>
-          <Text style={{fontSize: 14, color: "white"}}>1 / 10086</Text>
+          <Text style={{fontSize: 15, color: "white", marginBottom: 10}}>顺序做题</Text>
+          <Text style={{fontSize: 12, color: "white"}}>1 / 10086</Text>
         </View>
         <View style={[styles.shunxuExam, { backgroundColor: "#7958fa", borderColor: "#7880fa"}]}>
-          <Text style={{fontSize: 17, color: "white", marginBottom: 10}}>模拟做题</Text>
-          <Text style={{fontSize: 14, color: "white"}}>未考试</Text>
+          <Text style={{fontSize: 15, color: "white", marginBottom: 10}}>模拟做题</Text>
+          <Text style={{fontSize: 12, color: "white"}}>未考试</Text>
         </View>
       </View>
       <View>
@@ -73,7 +90,7 @@ export default function HomeComponent() {
   return <ScrollView>
     <Header
       centerComponent={{ text: '摩托车驾考题库', style: { color: '#fff' } }}
-      rightComponent={<View style={styles.rightComponentStyle}><Icon name='enviromento' type="antdesign" size={18} color="white" /><Text style={styles.rightComponentTextStyle}>{location}</Text></View>}
+      rightComponent={<View style={styles.rightComponentStyle}><Icon onPress={navigateToChooseCity} name='enviromento' type="antdesign" size={18} color="white" /><Text style={styles.rightComponentTextStyle}>{location}</Text></View>}
     />
     <View  style={styles.scrollViewContent}>
       <View style={styles.chooseLesson}>
@@ -88,6 +105,7 @@ export default function HomeComponent() {
 
       <Text>坚持学习 <Text style={{fontSize: 22}}>6</Text> 天</Text>
       {_renderMainContent()}
+      {_renderBottom()}
     </View>
 
   </ScrollView>

@@ -39,32 +39,46 @@ export const styles = StyleSheet.create({
         justifyContent: "space-between",
         marginTop: 30
     },
-    mainContentLeft: {
-       
-    },
     mainContentLeftIcon: {
-        marginBottom: 20
+        marginBottom: 30,
+        textAlign: "center",
+        alignItems: "center"
     },
     mainContentLeftImage: {
         width: 40,
         height: 40
     },
+    shunxuExamMain: {
+        justifyContent: "space-between",
+        padding: 40,
+        paddingLeft: 0,
+        paddingTop: 10,
+        paddingRight: 0
+    },
     mainContentLeftText: {
-        paddingTop: 10
+        paddingTop: 10,
+        fontSize: 12
     },
     shunxuExam: {
-        marginTop: 20,
-        width: 130,
+        width: 120,
         borderColor: "#18c0ff",
         borderWidth: 10,
         color: "white",
-        height:130,
+        height:120,
         backgroundColor: "#1890ff",
         textAlign: "center",
-        borderRadius: 65,
+        borderRadius: 60,
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center"
+    },
+    scrollerPics: {
+        flexDirection: "row"
+    },
+    scrollerPicImage: {
+        height: 100,
+        width: 200,
+        marginRight: 30
     },
     moniExam: {},
     lesson: {

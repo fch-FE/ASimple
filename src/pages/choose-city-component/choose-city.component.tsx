@@ -2,7 +2,7 @@ import * as React from 'react';
 import {style} from './choose-city.component.style';
 import { useChooseCityStore } from './choose-city.component.store';
 import { ScrollView, Text, View } from 'react-native';
-import { CheckBox, ListItem } from 'react-native-elements';
+import { CheckBox, ListItem, Header } from 'react-native-elements';
 import { ProvinceArray } from './choose-city.interface';
 
 export default function ChooseCityComponent() {
@@ -10,7 +10,8 @@ export default function ChooseCityComponent() {
   const { currentCheckedName } = state;
   console.log(currentCheckedName);
   
-  return <ScrollView>
+  return <View>
+    <ScrollView>
   {
     ProvinceArray.map((l, i) => (
       <ListItem key={l.ProID} bottomDivider onPress={() => {checkedCity(l)}}>
@@ -29,5 +30,6 @@ export default function ChooseCityComponent() {
     ))
   }
 </ScrollView>
+  </View>
 
 }

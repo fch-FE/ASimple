@@ -50,6 +50,10 @@ export function useHomeStore() {
         }
 	}
 
+	function navigateToChooseCity() {
+		navigation.push("ChooseCity");
+	}
+
 	async function setLesson(type: number) {
 		// 全局缓存等到下次进入的时候获取
 		await AsyncStorage.setItem('lesson', type + "");
@@ -71,5 +75,5 @@ export function useHomeStore() {
 	 } else {
 	     statusBarHeight = StatusBar.currentHeight;
     }
-    return { state, statusBarHeight, setLesson };
+    return { state, statusBarHeight, setLesson, navigateToChooseCity, navigation };
 };
