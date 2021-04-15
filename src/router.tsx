@@ -13,6 +13,9 @@ import IconLeaningComponent from './pages/icon-leaning-component/icon-leaning.co
 import IconLeaningStop2Component from './pages/icon-leaning-component/icon-leaning-stop2-component/icon-leaning-stop2.component';
 import IconLeaningStop1Component from './pages/icon-leaning-component/icon-leaning-stop1-component/icon-leaning-stop1.component';
 import IconLeaningStep0Component from './pages/icon-leaning-component/icon-leaning-step0-component/icon-leaning-step0.component';
+import EnrollComponent from './pages/enroll-component/enroll.component';
+import AnswerQuestionMiddleComponent from './pages/answer-question-middle-component/answer-question-middle.component';
+import DoExamMainComponent from './pages/do-exam-main-component/do-exam-main.component';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -47,11 +50,17 @@ function Home() {
       activeTintColor: '#1890ff',
       inactiveTintColor: 'gray',
     }}>
-      <Tab.Screen name="Home" component={HomeComponent} options={{title: "首页"}}/>
-      <Tab.Screen name="focusT" component={SpecialTopicComponent} options={{title: "专题"}}/>
+      <Tab.Screen name="Home" component={EnrollComponent} options={{title: "报名"}}/>
+      <Tab.Screen name="focusT" component={HomeComponent} options={{title: "考试"}}/>
       <Tab.Screen name="mine" component={MineComponent} options={{title: "我的"}}/>
     </Tab.Navigator>
   );
+}
+
+function _headerInfo() {
+  return <View>
+    
+  </View>
 }
 function App() {
   return (
@@ -63,6 +72,8 @@ function App() {
         <Stack.Screen name="IconLeaningStop2" component={IconLeaningStop2Component} options={({route}) => ({ title: (route.params as any).title, headerBackTitle: " "}) }/>
         <Stack.Screen name="IconLeaningStop1" component={IconLeaningStop1Component} options={({route}) => ({ title: (route.params as any).title, headerBackTitle: " "}) }/>
         <Stack.Screen name="IconLeaningStop0" component={IconLeaningStep0Component} options={({route}) => ({ title: (route.params as any).title, headerBackTitle: " "}) }/>
+        <Stack.Screen name="AnswerQuestionMiddle" component={AnswerQuestionMiddleComponent}  options={({route}) => ({ title: (route.params as any).title,headerBackTitle: " "}) }/>
+        <Stack.Screen name="DoExamMain" component={DoExamMainComponent} options={{headerShown: false}}/>
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -3,7 +3,9 @@ type Partial<T> = {
   [P in keyof T]?: T[P];
 };
 export function useStateStore<T>(initialState?: T) {
+  
   const [state, setState] = useState(initialState);
+  
   let newState: any = state;
   const setStateWrap = (value: Partial<T>, callback?: Function) => {
     setState(state => {

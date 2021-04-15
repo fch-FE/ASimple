@@ -36,7 +36,6 @@ export function useHomeStore() {
         try{
             //读
 			const value = await AsyncStorage.getItem('location');
-			console.log("value", value);
 			if(!value) {
 				navigation.replace("ChooseCity");
 			} else {

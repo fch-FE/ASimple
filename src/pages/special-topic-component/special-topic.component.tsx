@@ -3,8 +3,6 @@ import {styles} from './special-topic.component.style';
 import { useSpecialTopicStore } from './special-topic.component.store';
 import { View, Text, Image } from 'react-native';
 import { Badge, Header } from 'react-native-elements';
-import { style } from '../choose-city-component/choose-city.component.style';
-import { color } from 'react-native-reanimated';
 
 export default function SpecialTopicComponent() {
   const { state } = useSpecialTopicStore();
@@ -69,6 +67,5 @@ export default function SpecialTopicComponent() {
         </View>
       </View>
     </View>
-    
   </View>
 }

@@ -17,7 +17,7 @@ export const iconsTitle  = {
     {
         icon: require("../../asserts/home_wzlx.png"),
         title: "未做练习",
-        src: ""
+        src: "AnswerQuestionMiddle"
     },
     {
         icon: require("../../asserts/home_kqcs.png"),

@@ -1,0 +1,16 @@
+{
+    "collection": "@fch/fch-rn-schematic",
+    "type": "rn",
+    "defaultSrcRoot": "/src/solution/",
+    "needRouter": [
+        "c"
+    ],
+    "needDto": [
+        "s"
+    ],
+    "baseUrl": {
+      "service": "/src/solution/model/services",
+      "dto": "/src/solution/model/dto",
+      "interface": "/src/shared/interface"
+    }
+}

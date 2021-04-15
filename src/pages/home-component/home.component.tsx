@@ -59,23 +59,30 @@ export default function HomeComponent() {
         return <TouchableOpacity key={item.title} onPress={() => {
           navigation.push(item.src)
         }}>
-           <View  style={styles.mainContentLeftIcon}>
-          <Image style={styles.mainContentLeftImage} source={item.icon}></Image>
-          <Text style={styles.mainContentLeftText} >{item.title}</Text>
-        </View>
+          <View  style={styles.mainContentLeftIcon}>
+            <Image style={styles.mainContentLeftImage} source={item.icon}></Image>
+            <Text style={styles.mainContentLeftText} >{item.title}</Text>
+          </View>
         </TouchableOpacity>
-       
       })}
       </View>
       <View style={styles.shunxuExamMain}>
-        <View style={styles.shunxuExam}>
-          <Text style={{fontSize: 15, color: "white", marginBottom: 10}}>顺序做题</Text>
-          <Text style={{fontSize: 12, color: "white"}}>1 / 10086</Text>
-        </View>
-        <View style={[styles.shunxuExam, { backgroundColor: "#7958fa", borderColor: "#7880fa"}]}>
-          <Text style={{fontSize: 15, color: "white", marginBottom: 10}}>模拟做题</Text>
-          <Text style={{fontSize: 12, color: "white"}}>未考试</Text>
-        </View>
+        <TouchableOpacity style={styles.shunxuExam} onPress={() => {
+          navigation.push("AnswerQuestionMiddle",  {title: "顺序做题", action: "sort1"})
+        }}>
+          <View  style={styles.shunxuExam}>
+            <Text style={{fontSize: 15, color: "white", marginBottom: 10}}>顺序做题</Text>
+            <Text style={{fontSize: 12, color: "white"}}>1 / 10086</Text>
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity  onPress={() => {
+          navigation.push("AnswerQuestionMiddle")
+        }} >
+           <View style={[styles.shunxuExam, { backgroundColor: "#7958fa", borderColor: "#7880fa"}]}>
+            <Text style={{fontSize: 15, color: "white", marginBottom: 10}}>模拟做题</Text>
+            <Text style={{fontSize: 12, color: "white"}}>未考试</Text>
+          </View>
+        </TouchableOpacity>
       </View>
       <View>
       {iconsTitle.right.map((item) => {
@@ -98,12 +105,16 @@ export default function HomeComponent() {
           <Text style={{color: "#2db7f5"}} onPress={() => setLesson(1)}>科目1</Text>
         </View>
         <View style={[styles.lesson, currentLesson == 2 ? styles.choosedLesson : {}]}>
-         <Text style={{color: "#2db7f5"}} onPress={() => setLesson(2)}>科目4</Text>
+         <Text style={{color: "#2db7f5"}} onPress={() => setLesson(2)}>科目2</Text>
+        </View>
+        <View style={[styles.lesson, currentLesson == 3 ? styles.choosedLesson : {}]}>
+          <Text style={{color: "#2db7f5"}} onPress={() => setLesson(3)}>科目3</Text>
+        </View>
+        <View style={[styles.lesson, currentLesson == 4 ? styles.choosedLesson : {}]}>
+         <Text style={{color: "#2db7f5"}} onPress={() => setLesson(4)}>科目4</Text>
         </View>
       </View>
       {bannerList && bannerList.length && _renderBanner()}
-
-      <Text>坚持学习 <Text style={{fontSize: 22}}>6</Text> 天</Text>
       {_renderMainContent()}
       {_renderBottom()}
     </View>
